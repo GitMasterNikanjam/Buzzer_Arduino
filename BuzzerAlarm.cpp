@@ -1,20 +1,21 @@
-#include "Buzzer.h"
+#include "BuzzerAlarm.h"
 
 // ################################################################################
 
 
-Buzzer::Buzzer()
+BuzzerAlarm::BuzzerAlarm()
 {
   parameters.ACTIVE_MODE = 0;
   parameters.PIN_NUM = -1;
 }
 
-Buzzer::~Buzzer()
+BuzzerAlarm::~BuzzerAlarm()
 {
+  // Free the GPIO.
   pinMode(parameters.PIN_NUM, INPUT);
 }
 
-bool Buzzer::init(void)
+bool BuzzerAlarm::init(void)
 {
   if(_checkParameters() == false)
   {
@@ -23,82 +24,81 @@ bool Buzzer::init(void)
 
   pinMode(parameters.PIN_NUM, OUTPUT);
 
-  _off();
-
+  off();
 }
 
-bool Buzzer::_checkParameters(void)
+bool BuzzerAlarm::_checkParameters(void)
 {
   bool state = (parameters.ACTIVE_MODE <= 1) && (parameters.PIN_NUM >= 0);
 
   if(state == false)
   {
-    errorMessage = "Error Buzzer: One or some parameters are not correct.";
+    errorMessage = "Error BuzzerAlarm: One or some parameters are not correct.";
     return false;
   }
 
   return true;
 }
 
-void Buzzer::_on(void)
+void BuzzerAlarm::on(void)
 {
   digitalWrite(parameters.PIN_NUM, parameters.ACTIVE_MODE);
 }
 
-void Buzzer::_off(void)
+void BuzzerAlarm::off(void)
 {
   digitalWrite(parameters.PIN_NUM, ~parameters.ACTIVE_MODE);
 }
 
-void Buzzer::soundInit(void)
+void BuzzerAlarm::soundInit(void)
 {
-  _on();
+  on();
   delay(1000);
-  digitalWrite(parameters.PIN_NUM,0);
+  off();
   delay(100);
 }
 
-void Buzzer::soundStop(void)
+void BuzzerAlarm::soundStop(void)
 {
   for(uint8_t i=1;i<=2;i++)
   {
-  digitalWrite(parameters.PIN_NUM, 1);
+  on();
   delay(100);
-  digitalWrite(parameters.PIN_NUM, 0);
+  off();
   delay(100);
   }
 }
 
-void Buzzer::soundWarning_1(void)
+void BuzzerAlarm::soundWarning_1(void)
 {
   for(int j=1; j<=10; j++)
   {
     for(uint8_t i=1;i<=20;i++)
     {
-      digitalWrite(parameters.PIN_NUM, 1);
+      on();
       delay(5);
-      digitalWrite(parameters.PIN_NUM, 0);
+      off();
       delay(5);  
     }
     delay(200);
   }
 }
     
-void Buzzer::soundWarning_2(void)
+void BuzzerAlarm::soundWarning_2(void)
 {
-  digitalWrite(parameters.PIN_NUM, 1);
+  on();
   delay(100);
-  digitalWrite(parameters.PIN_NUM, 0);
+  off();
   delay(100);
 }
 
-void Buzzer::soundWarning_3(void)
+void BuzzerAlarm::soundWarning_3(void)
 {
   for(uint8_t i=1;i<=10;i++)
   {
-    digitalWrite(parameters.PIN_NUM, 1);
+    on();
     delay(25);
-    digitalWrite(parameters.PIN_NUM, 0);
+    off();
     delay(25);  
   }
 }
