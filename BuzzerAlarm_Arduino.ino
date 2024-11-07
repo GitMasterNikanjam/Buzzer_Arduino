@@ -1,6 +1,12 @@
 #include "BuzzerAlarm.h"
 
+// #################################################################
+// Global variables and objects:
+
 BuzzerAlarm buzzer;
+
+// ##################################################################
+// Setup:
 
 void setup() {
 
@@ -17,6 +23,9 @@ void setup() {
 
   buzzer.soundInit();
 }
+
+// ####################################################################
+// Loop:
 
 void loop() {
   // put your main code here, to run repeatedly:

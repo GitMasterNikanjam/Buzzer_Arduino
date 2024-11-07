@@ -10,7 +10,7 @@
 // Buzzer class:
 
 /**
- @class 
+ @class BuzzerAlarm
  @brief Buzzer class for manage alaram sounds.
 */
 class BuzzerAlarm
