@@ -1,4 +1,4 @@
-#include "BuzzerAlarm.h"
+#include "Buzzer.h"
 
 // #################################################################
 // Global variables and objects:

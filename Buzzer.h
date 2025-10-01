@@ -10,10 +10,10 @@
 // Buzzer class:
 
 /**
- @class BuzzerAlarm
+ @class Buzzer
  @brief Buzzer class for manage alaram sounds.
 */
-class BuzzerAlarm
+class Buzzer
 {
   public:
 
@@ -36,10 +36,10 @@ class BuzzerAlarm
     /**
      @brief Default constructor.
     */
-    BuzzerAlarm();
+    Buzzer();
 
     /// @brief Default destructor.
-    ~BuzzerAlarm();
+    ~Buzzer();
 
     /**
      @brief Initial object. start digital GPIO ouput mode. Check parameters.
