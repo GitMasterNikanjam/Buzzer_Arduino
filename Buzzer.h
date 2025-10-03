@@ -47,6 +47,8 @@ class Buzzer
     */
     bool init(void);
 
+    bool getInitFlag(void) {return _initFlag;};
+
     // ------------------------------------------------------------------
     // Special sounds for buzzer:
 
@@ -75,6 +77,8 @@ class Buzzer
     void off(void);
 
   private:
+
+    bool _initFlag = false;
 
     /// @brief Check parameters validation. Return true if successed.
     bool _checkParameters(void);
